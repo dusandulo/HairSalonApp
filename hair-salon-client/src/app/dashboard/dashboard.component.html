@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h2>Welcome to your Dashboard</h2>
+    <div class="user-info">
+      <p *ngIf="user$ | async as user">Welcome back, {{user.firstName}} {{user.lastName}}</p>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="appointments-section">
+    <div class="available-appointments">
+      <h3>Available Appointments</h3>
+      <div class="appointments-grid">
+        <div *ngFor="let appointment of availableAppointments" class="appointment-card">
+          <p class="date">{{appointment.date | date:'mediumDate'}}</p>
+          <p class="time">{{appointment.time}}</p>
+          <p class="service">{{appointment.service}}</p>
+          <button (click)="bookAppointment(appointment.id)">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-appointments">
+      <h3>Your Appointments</h3>
+      <div class="appointments-grid">
+        <div *ngFor="let appointment of userAppointments" class="appointment-card">
+          <p class="date">{{appointment.date | date:'mediumDate'}}</p>
+          <p class="time">{{appointment.time}}</p>
+          <p class="service">{{appointment.service}}</p>
+          <span class="status">Confirmed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="register-container" [@fadeInOut]>
+  <div class="logo">
+    <img src="logo.webp" alt="Hair Salon Logo">
+  </div>
+  
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-header" [@fadeInOut]>
+      <h2>Create your account</h2>
+      <p>Join us to book your next salon appointment</p>
+    </div>
+    
+    <div class="form-grid">
+      <div class="form-group" [@fadeInOut]>
+        <label for="firstName">First Name</label>
+        <input 
+          type="text" 
+          id="firstName" 
+          formControlName="firstName"
+          [class.error]="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched"
+          placeholder="John">
+        <span class="error-message" [@shake]="registerForm.get('firstName')?.errors" 
+              *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+          First name is required
+        </span>
+      </div>
+
+      <div class="form-group" [@fadeInOut]>
+        <label for="lastName">Last Name</label>
+        <input 
+          type="text" 
+          id="lastName" 
+          formControlName="lastName"
+          [class.error]="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched"
+          placeholder="Doe">
+        <span class="error-message" [@shake]="registerForm.get('lastName')?.errors" 
+              *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+          Last name is required
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group" [@fadeInOut]>
+      <label for="email">Email address</label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email"
+        [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+        placeholder="john@example.com">
+      <span class="error-message" [@shake]="registerForm.get('email')?.errors" 
+            *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        Please enter a valid email address
+      </span>
+    </div>
+
+    <div class="form-group" [@fadeInOut]>
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password" 
+        formControlName="password"
+        [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+        placeholder="••••••••">
+      <span class="error-message" [@shake]="registerForm.get('password')?.errors" 
+            *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        Password must be at least 6 characters
+      </span>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="registerForm.invalid || isLoading" [@fadeInOut]>
+        <span class="button-content">
+          <i class="fas fa-user-plus"></i>
+          {{ isLoading ? 'Creating account...' : 'Create account' }}
+        </span>
+      </button>
+      <button type="button" (click)="goToLogin()" class="secondary-button" [@fadeInOut]>
+        <span class="button-content">
+          <i class="fas fa-arrow-left"></i>
+          Already have an account? Sign in
+        </span>
+      </button>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-banner" [@shake]="errorMessage">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

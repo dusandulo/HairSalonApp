@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.API", "HairSalon.API\HairSalon.API.csproj", "{5656C527-50FA-441E-BDB4-ED0B7D10F51C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Core", "HairSalon.Core\HairSalon.Core.csproj", "{7BC6D2FD-BE37-4543-BF7A-9E175BD24931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Infrastructure", "HairSalon.Infrastructure\HairSalon.Infrastructure.csproj", "{9A7D709D-4318-4836-8281-82CE5B670214}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5656C527-50FA-441E-BDB4-ED0B7D10F51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5656C527-50FA-441E-BDB4-ED0B7D10F51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5656C527-50FA-441E-BDB4-ED0B7D10F51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5656C527-50FA-441E-BDB4-ED0B7D10F51C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BC6D2FD-BE37-4543-BF7A-9E175BD24931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BC6D2FD-BE37-4543-BF7A-9E175BD24931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BC6D2FD-BE37-4543-BF7A-9E175BD24931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BC6D2FD-BE37-4543-BF7A-9E175BD24931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7D709D-4318-4836-8281-82CE5B670214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7D709D-4318-4836-8281-82CE5B670214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7D709D-4318-4836-8281-82CE5B670214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7D709D-4318-4836-8281-82CE5B670214}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
