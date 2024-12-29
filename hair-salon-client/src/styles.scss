@@ -1,1 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Custom global styles
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors duration-200;
+  }
+  
+  .nav-link {
+    @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium;
+  }
+}
+
 /* You can add global styles to this file, and also import other style files */

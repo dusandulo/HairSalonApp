@@ -121,3 +121,4 @@ C:\Users\ducar\Desktop\Hair Salon App\HairSalonApp\HairSalon.API\obj\Debug\net8.
 C:\Users\ducar\Desktop\Hair Salon App\HairSalonApp\HairSalon.API\obj\Debug\net8.0\HairSalon.API.pdb
 C:\Users\ducar\Desktop\Hair Salon App\HairSalonApp\HairSalon.API\obj\Debug\net8.0\HairSalon.API.genruntimeconfig.cache
 C:\Users\ducar\Desktop\Hair Salon App\HairSalonApp\HairSalon.API\obj\Debug\net8.0\ref\HairSalon.API.dll
+C:\Users\ducar\Desktop\Hair Salon App\HairSalonApp\HairSalon.API\obj\Debug\net8.0\HairSalon.API.sourcelink.json

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AppointmentService } from '../services/appointment.service';
 import { AuthService, User } from '../services/auth.service';
 import { Observable } from 'rxjs';
@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, DatePipe]
 })
 export class DashboardComponent implements OnInit {
   availableAppointments: Appointment[] = [];
   userAppointments: Appointment[] = [];
   user$!: Observable<User | null>;
+  activeTab: string = 'dashboard';
+  isMenuOpen: boolean = false;
 
   constructor(
     private appointmentService: AppointmentService,
@@ -45,5 +47,18 @@ export class DashboardComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  navigateToProfile() {
+    this.setActiveTab('profile');
+    this.router.navigate(['/profile']);
   }
 }

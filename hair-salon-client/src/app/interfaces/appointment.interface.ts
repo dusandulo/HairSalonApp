@@ -1,13 +1,11 @@
 export interface Appointment {
-    id: number;
-    date: Date;
-    time: string;
-    service: string;
-    status: string;
-    price: number;
-    notes?: string;
-    clientId?: string;
-    stylistId: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }
+  id: number;
+  service: string;
+  date: Date;
+  time: string;
+  stylist: string;
+  duration: number;
+  price: number;
+  location: string;
+  status?: 'available' | 'confirmed' | 'cancelled';
+}

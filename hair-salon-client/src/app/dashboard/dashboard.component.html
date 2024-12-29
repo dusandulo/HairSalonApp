@@ -1,35 +1,158 @@
-<div class="dashboard-container">
-  <div class="header">
-    <h2>Welcome to your Dashboard</h2>
-    <div class="user-info">
-      <p *ngIf="user$ | async as user">Welcome back, {{user.firstName}} {{user.lastName}}</p>
-      <button (click)="logout()">Logout</button>
-    </div>
-  </div>
-
-  <div class="appointments-section">
-    <div class="available-appointments">
-      <h3>Available Appointments</h3>
-      <div class="appointments-grid">
-        <div *ngFor="let appointment of availableAppointments" class="appointment-card">
-          <p class="date">{{appointment.date | date:'mediumDate'}}</p>
-          <p class="time">{{appointment.time}}</p>
-          <p class="service">{{appointment.service}}</p>
-          <button (click)="bookAppointment(appointment.id)">Book Now</button>
+<div class="min-h-screen bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <img class="h-8 w-auto" src="logo.webp" alt="Logo">
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <button [ngClass]="{'border-indigo-500 text-gray-900': activeTab === 'dashboard'}"
+                    class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    (click)="setActiveTab('dashboard')">
+              Dashboard
+            </button>
+            <button [ngClass]="{'border-indigo-500 text-gray-900': activeTab === 'profile'}"
+                    class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    (click)="setActiveTab('profile')">
+              Profile
+            </button>
+            <!-- Add more navigation items -->
+          </div>
+        </div>
+        <div class="flex items-center">
+          <div class="hidden sm:ml-6 sm:flex sm:items-center">
+            <div *ngIf="user$ | async as user" class="relative">
+              <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500">
+                <span class="text-sm font-medium text-gray-700">{{user.firstName}} {{user.lastName}}</span>
+              </button>
+            </div>
+            <button (click)="logout()" class="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </div>
+  </nav>
 
-    <div class="user-appointments">
-      <h3>Your Appointments</h3>
-      <div class="appointments-grid">
-        <div *ngFor="let appointment of userAppointments" class="appointment-card">
-          <p class="date">{{appointment.date | date:'mediumDate'}}</p>
-          <p class="time">{{appointment.time}}</p>
-          <p class="service">{{appointment.service}}</p>
-          <span class="status">Confirmed</span>
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-fade-in">
+    <!-- Stats Section -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white overflow-hidden shadow rounded-lg p-5">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="ml-5">
+            <div class="text-sm font-medium text-gray-500">Upcoming</div>
+            <div class="text-lg font-semibold text-gray-900">{{userAppointments.length}}</div>
+          </div>
+        </div>
+      </div>
+      <!-- Add more stat cards -->
+    </div>
+
+    <!-- Appointments Sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Available Appointments -->
+      <div class="bg-white shadow rounded-lg p-6 animate-slide-in">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Available Appointments</h3>
+        <div class="space-y-4">
+          <div *ngFor="let appointment of availableAppointments" 
+               class="border rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+            <div class="flex flex-col space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900">{{appointment.service}}</h4>
+                  <p class="text-sm text-gray-500">with {{appointment.stylist}}</p>
+                </div>
+                <span class="px-3 py-1 text-sm text-blue-800 bg-blue-100 rounded-full">
+                  Available
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Date & Time</p>
+                  <p class="text-sm text-gray-900">{{appointment.date | date:'EEEE, MMMM d'}} at {{appointment.time}}</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Duration</p>
+                  <p class="text-sm text-gray-900">{{appointment.duration}} minutes</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Price</p>
+                  <p class="text-sm text-gray-900">${{appointment.price}}</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Location</p>
+                  <p class="text-sm text-gray-900">{{appointment.location}}</p>
+                </div>
+              </div>
+              <div class="flex justify-end mt-2">
+                <button (click)="bookAppointment(appointment.id)" 
+                        class="bg-indigo-600 text-white px-6 py-2 rounded-md text-sm hover:bg-indigo-700 transition-colors duration-200 flex items-center">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Book Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your Appointments -->
+      <div class="bg-white shadow rounded-lg p-6 animate-slide-in">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Your Appointments</h3>
+        <div class="space-y-4">
+          <div *ngFor="let appointment of userAppointments" 
+               class="border rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+            <div class="flex flex-col space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900">{{appointment.service}}</h4>
+                  <p class="text-sm text-gray-500">with {{appointment.stylist}}</p>
+                </div>
+                <span class="px-3 py-1 text-sm text-green-800 bg-green-100 rounded-full">
+                  Confirmed
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Date & Time</p>
+                  <p class="text-sm text-gray-900">{{appointment.date | date:'EEEE, MMMM d'}} at {{appointment.time}}</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Duration</p>
+                  <p class="text-sm text-gray-900">{{appointment.duration}} minutes</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Price</p>
+                  <p class="text-sm text-gray-900">${{appointment.price}}</p>
+                </div>
+                <div>
+                  <p class="text-sm font-medium text-gray-500">Location</p>
+                  <p class="text-sm text-gray-900">{{appointment.location}}</p>
+                </div>
+              </div>
+              <div class="flex justify-end mt-2 space-x-2">
+                <button class="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50">
+                  Reschedule
+                </button>
+                <button class="px-4 py-2 text-sm text-red-700 border border-red-300 rounded-md hover:bg-red-50">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </div>
